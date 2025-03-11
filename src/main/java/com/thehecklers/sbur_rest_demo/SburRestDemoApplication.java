@@ -2,6 +2,8 @@ package com.thehecklers.sbur_rest_demo;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import java.util.UUID;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,9 +16,11 @@ public class SburRestDemoApplication {
     }
 }
 
+@Entity
 class Coffee {
 
-    private final String id;
+    @Id
+    private String id;
     private String name;
 
     @JsonCreator
@@ -29,15 +33,25 @@ class Coffee {
         this(UUID.randomUUID().toString(), name);
     }
 
+    public Coffee() {
+
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
+
 }
